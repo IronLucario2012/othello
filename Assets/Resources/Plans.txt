@@ -1,6 +1,6 @@
 Things To Do:
 
--Finish adding OnClick code to rows 2+
+-Finish adding OnClick code to rows 4+
 -Add 'moves' counter
 -Add win condition
 -Add Menu screen
