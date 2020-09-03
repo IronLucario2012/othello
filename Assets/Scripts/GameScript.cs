@@ -47,7 +47,7 @@ public class GameScript : MonoBehaviour
 
         if(CheckComplete())
         {
-            WinScreen.gameObject.SetActive(WinScreen.gameObject.activeSelf);
+            WinScreen.gameObject.SetActive(!WinScreen.gameObject.activeSelf);
         }
     }
 
