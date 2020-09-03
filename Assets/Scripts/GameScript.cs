@@ -11,7 +11,11 @@ public class GameScript : MonoBehaviour
 
     public Button[,] Buttons;
 
-    public int numberOfRows = 8, numberOfColumns = 8;
+    public GameObject WinScreen;
+
+    private MoveCounterWinScript Win;
+
+    public int numberOfRows = 8, numberOfColumns = 8, movesMade = 0;
 
     private void Start()
     {
@@ -24,6 +28,8 @@ public class GameScript : MonoBehaviour
                 Buttons[j, i] = rowButtons[j];
             }
         }
+
+        Win = GetComponentInParent<MoveCounterWinScript>();
     }
 
     public void ButtonPressed(int which)
@@ -36,7 +42,13 @@ public class GameScript : MonoBehaviour
         CallButton(x-1, y);
         CallButton(x, y+1);
         CallButton(x, y-1);
+        
+        Win.UpdateAllCounters(++movesMade);
 
+        if(CheckComplete())
+        {
+            WinScreen.gameObject.SetActive(WinScreen.gameObject.activeSelf);
+        }
     }
 
     public void CallButton(int x, int y)
@@ -46,6 +58,22 @@ public class GameScript : MonoBehaviour
             ButtonScript bs = Buttons[x, y].GetComponent<ButtonScript>();
             bs.ChangeColour();
         }
+    }
+
+    private bool CheckComplete()
+    {
+        bool isComplete = true;
+        for (int i = 0; i < numberOfRows && isComplete; i++)
+        {
+            for (int j = 0; j < numberOfColumns && isComplete; j++)
+            {
+                if(!Buttons[j, i].GetComponent<ButtonScript>().GetIsOn())
+                {
+                    isComplete = false;
+                }
+            }
+        }
+        return isComplete;
     }
 
 }

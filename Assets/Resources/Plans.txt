@@ -1,7 +1,5 @@
 Things To Do:
 
--Finish adding OnClick code to rows 4+
--Add 'moves' counter
--Add win condition
+-Add reset button to win screen
 -Add Menu screen
 -Add more levels
